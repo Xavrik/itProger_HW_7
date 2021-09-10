@@ -19,6 +19,10 @@ public class usersService {
     }
     public  static  void delete_by_username(String username){
         userDao.delete_by_username(username);
+
+    }
+    public  static  void delete_by_id(int id){
+        userDao.delete_by_id(id);
     }
 
 }

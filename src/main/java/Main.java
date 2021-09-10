@@ -35,7 +35,10 @@ public class Main {
 //                System.out.println("name " + us.getUsername() + ", and age " + us.getAge() );
 
 //Метод для удаления по имени пользователя.
-        usersService.delete_by_username("Ramzes1998");
+        //usersService.delete_by_username("HarryPotniy");
+//Метод для удаления по id.
+        //usersService.delete_by_id(2);
+
 
 
 

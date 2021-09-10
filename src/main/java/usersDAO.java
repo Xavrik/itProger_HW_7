@@ -1,6 +1,10 @@
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
 
 @Transactional
 public class usersDAO {
@@ -58,20 +62,35 @@ public class usersDAO {
     }
 
     public  void delete_by_username(String username){
+
+        EntityManager entityManager = MANAGER_FACTORY.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        String query = "SELECT i  FROM users i WHERE i.username = :us ";
+        TypedQuery<users> typedQuery = entityManager.createQuery(query, users.class);
+        typedQuery.setParameter("us",username);
+        entityTransaction.begin();
+        users id = typedQuery.getSingleResult();
+        //System.out.println(id.getId());
+        int a = id.getId();
+        //System.out.println(a);
+        entityManager.find(users.class, a);
+        entityManager.remove(id);
+        entityTransaction.commit();
+
+
+    }
+    public void delete_by_id(int id){
+
         entityManager = MANAGER_FACTORY.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-
-        users us = entityManager.find(users.class, username);
-
-
-        if (us != null) {
-            entityManager.remove(us);
-            entityManager.flush();
-        }
+        users us=entityManager.find(users.class, id);
+        entityManager.remove(us);
         entityTransaction.commit();
 
     }
+
+
 
 
 }

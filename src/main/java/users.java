@@ -10,7 +10,7 @@ public class users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column( name ="username", nullable = false)
+    @Column( name ="username",unique = true, nullable = false)
     private String username;
 
     @Column(name = "age", nullable = false)
